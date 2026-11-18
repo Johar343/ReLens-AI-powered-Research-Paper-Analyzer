@@ -1,0 +1,254 @@
+
+.home-sidebar {
+  width: 210px;
+  flex: 0 0 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  position: sticky;
+  top: calc(var(--nav-height) + 20px);
+  align-self: flex-start;
+}
+
+/* Navigation */
+.home-sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.home-sidebar-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-subtle);
+  padding-left: 12px;
+}
+
+.home-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.home-nav-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  padding: 9px 11px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.home-nav-link:hover {
+  background-color: var(--surface-muted);
+  color: var(--text-primary);
+}
+
+.home-nav-link.active {
+  background-color: var(--accent-sage-subtle);
+  color: var(--accent-sage);
+  font-weight: 600;
+  border-color: var(--accent-sage-border);
+  box-shadow: none;
+}
+
+.home-link-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.home-link-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.home-nav-link.active .home-link-icon {
+  color: var(--accent-sage);
+}
+
+.icon-highlight {
+  color: var(--accent-sage);
+}
+
+.home-pill-badge {
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-left: 6px;
+  font-size: 0.68rem;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-muted);
+  color: var(--text-muted);
+}
+
+/* Project information */
+.home-project-card {
+  padding: 4px 12px 8px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.project-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.project-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.project-specs-list {
+  gap: 8px;
+}
+.project-spec-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.78rem;
+}
+
+.project-spec-label {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.project-spec-value {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Quick demo */
+.home-quick-sample-box {
+  padding: 16px;
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quick-sample-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--accent-sage);
+}
+
+.quick-sample-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.btn-quick-demo {
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 3px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .home-sidebar {
+    width: 100%;
+    flex: none;
+    position: static;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .home-nav-list {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+
+  .home-nav-link {
+    width: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .home-project-card,
+  .home-quick-sample-box {
+    display: none;
+  }
+}
+
+
+
+/* ReLens Workflow Card */
+.home-workflow-card {
+  padding: 14px 12px;
+  border-top: 1px solid var(--border-light);
+}
+
+.workflow-kicker {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--accent-sage);
+}
+
+.workflow-heading {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  margin-top: 7px;
+  margin-bottom: 18px;
+}
+
+.workflow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.workflow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.workflow-number {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent-sage);
+  background: var(--accent-sage-subtle);
+  padding: 4px 5px;
+  border-radius: 5px;
+}
+
+.workflow-step h5 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.workflow-step p {
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}

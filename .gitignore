@@ -10,3 +10,6 @@ models/*
 
 data/test_papers/*
 !data/test_papers/.gitkeep
+
+.env.*
+!.env.example

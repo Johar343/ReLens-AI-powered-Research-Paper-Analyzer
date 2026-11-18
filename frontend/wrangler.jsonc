@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "relens",
+  "compatibility_date": "2026-11-18",
+  "pages_build_output_dir": "./dist",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "relens-db",
+      "database_id": "5bc9525c-5d65-42cc-82bc-6d5e8a6cef98",
+    },
+  ],
+}
