@@ -1,0 +1,28 @@
+/* Global flat presentation layer loaded after component styles. */
+*:not(.step-icon-spinner):not(.typing-dot) {
+  animation: none !important;
+  transition: none !important;
+}
+
+* {
+  box-shadow: none !important;
+}
+
+[class*="card"],
+[class*="modal"],
+[class*="dialog"],
+[class*="dropdown"],
+[class*="button"],
+.btn,
+input,
+textarea,
+select,
+table {
+  border-radius: 4px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+  }
+}

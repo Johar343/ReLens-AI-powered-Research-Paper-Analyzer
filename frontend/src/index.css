@@ -43,11 +43,11 @@
   --border-medium: #ddc5c1;
   --border-focus: #456d59;
 
-  /* Restrained Soft Shadows */
-  --shadow-xs: 0 1px 2px rgba(43, 31, 29, 0.04);
-  --shadow-sm: 0 2px 5px rgba(43, 31, 29, 0.04), 0 1px 2px rgba(43, 31, 29, 0.02);
-  --shadow-md: 0 4px 12px rgba(43, 31, 29, 0.05), 0 1px 3px rgba(43, 31, 29, 0.03);
-  --shadow-lg: 0 12px 28px rgba(43, 31, 29, 0.07), 0 4px 10px rgba(43, 31, 29, 0.04);
+  /* Flat hierarchy uses borders and contrast instead of elevation. */
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
 
   /* Typography */
   --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
@@ -55,11 +55,11 @@
   --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
 
   /* Radii */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
-  --radius-full: 9999px;
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-xl: 4px;
+  --radius-full: 4px;
 
   /* Layout */
   --max-width: 1320px;
@@ -263,7 +263,7 @@ input, textarea {
 
 .academic-card:hover {
   border-color: var(--border-medium);
-  box-shadow: var(--shadow-md);
+  box-shadow: none;
 }
 
 /* Toast/Alert */
@@ -300,4 +300,30 @@ code, pre {
   height: 8px;
   border-radius: 50%;
   background-color: var(--accent-sage);
+}
+
+/* Interaction changes should be immediate; loading indicators remain animated. */
+*:not(.step-icon-spinner):not(.typing-dot) {
+  transition: none !important;
+  animation: none !important;
+}
+
+[class*="card"],
+[class*="modal"],
+[class*="dialog"],
+[class*="dropdown"],
+[class*="button"],
+.btn,
+input,
+textarea,
+select,
+table {
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+  }
 }

@@ -38,7 +38,7 @@ export default function App() {
     const loadHistory = async () => {
       try {
         const response = await fetch(
-          `/api/history?browserId=${encodeURIComponent(browserId)}`,
+          `${API_BASE_URL}/api/history?browserId=${encodeURIComponent(browserId)}`,
         );
 
         if (!response.ok) {
@@ -184,7 +184,7 @@ export default function App() {
       const paper = createPaperFromAPI(data);
 
       try {
-        const saveResponse = await fetch("/api/history", {
+        const saveResponse = await fetch(`${API_BASE_URL}/api/history`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

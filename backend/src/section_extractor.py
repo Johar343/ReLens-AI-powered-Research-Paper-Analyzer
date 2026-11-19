@@ -70,11 +70,11 @@ def identify_section_heading(line: str):
         cleaned
     )
 
-    cleaned = cleaned.strip(" .:")
+    cleaned = re.sub(r"\s+", " ", cleaned).strip(" .:")
 
     for section, patterns in SECTION_PATTERNS.items():
         for pattern in patterns:
-            if re.fullmatch(pattern, cleaned):
+            if re.fullmatch(rf"(?:{pattern})(?:\s+and\s+[^:]+)?", cleaned):
                 return section
 
     return None
@@ -86,27 +86,33 @@ def extract_sections(pages: list[dict]) -> dict:
 
     for page in pages:
         page_number = page["page_number"]
-        lines = page["text"].splitlines()
+        current_lines = []
 
-        for line in lines:
-            line = line.strip()
+        def flush_paragraph():
+            if current_lines:
+                sections.setdefault(current_section, []).append({
+                    "page_number": page_number,
+                    "text": " ".join(current_lines),
+                })
+                current_lines.clear()
 
+        for raw_line in page["text"].splitlines():
+            line = raw_line.strip()
             if not line:
+                flush_paragraph()
                 continue
 
             detected_section = identify_section_heading(line)
-
-            if detected_section:
+            if detected_section and len(line.split()) <= 12:
+                flush_paragraph()
                 current_section = detected_section
                 sections.setdefault(current_section, [])
                 continue
 
-            sections.setdefault(current_section, [])
+            current_lines.append(line)
 
-            sections[current_section].append({
-            "page_number": page_number,
-            "text": line
-            })
+        flush_paragraph()
+
     return sections
 
 def prepare_summarization_text(sections: dict) -> str:

@@ -57,7 +57,7 @@
 .accordion-item {
   background-color: var(--surface-card);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
+  border-radius: 4px;
   overflow: hidden;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -68,7 +68,7 @@
 
 .accordion-item.is-expanded {
   border-color: var(--accent-terracotta-border);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .accordion-header {

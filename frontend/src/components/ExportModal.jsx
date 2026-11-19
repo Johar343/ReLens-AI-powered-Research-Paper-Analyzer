@@ -15,35 +15,9 @@ export default function ExportModal({ paper, onClose }) {
 **DOI**: ${paper.publication.doi}  
 **Citations**: ${paper.publication.citations} | **Pages**: ${paper.meta.totalPages}
 
----
-
-## 1. Executive Overview
-${paper.quickOverview}
-
----
-
-## 2. Research Objective
-${paper.researchObjective}
-
----
-
-## 3. Methodology & Formulation
-${paper.methodology.map((m) => `### ${m.aspect}\n${m.detail}`).join('\n\n')}
-
----
-
-## 4. Evaluated Benchmarks & Datasets
-${paper.datasets.map((d) => `* **${d.name}** (${d.type}): ${d.size}. Purpose: ${d.purpose}`).join('\n')}
-
----
-
-## 5. Key Findings
-${paper.keyFindings.map((f) => `* **${f.metric}**: ${f.description} (Impact: ${f.impact})`).join('\n')}
-
----
-
-## 6. Boundary Limitations
-${paper.limitations.map((l) => `* **${l.title} [${l.severity} Severity]**: ${l.description}`).join('\n')}
+${(paper.sectionSummaries || []).map((section) => (
+  `\n---\n\n## ${section.title}\n${section.summary}`
+)).join('')}
 
 ---
 

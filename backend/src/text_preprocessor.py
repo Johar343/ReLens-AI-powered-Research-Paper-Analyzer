@@ -13,13 +13,48 @@ def preprocess_text(text: str) -> str:
     # Remove excessive spaces and tabs
     text = re.sub(r"[ \t]+", " ", text)
 
-    # Fix words split across lines by PDF extraction
-    text = re.sub(r"(?<=\w)-\n(?=\w)", "", text)
+    # Fix words split across lines by PDF extraction without changing
+    # meaningful hyphenated terminology.
+    text = re.sub(r"(?<=[A-Za-z])-\n(?=[a-z])", "", text)
 
     # Remove excessive blank lines
     text = re.sub(r"\n{3,}", "\n\n", text)
 
     return text.strip()
+
+
+def remove_repeated_page_margins(pages: list[dict]) -> list[dict]:
+    """Remove repeated first/last lines that are likely page furniture."""
+    if len(pages) < 3:
+        return pages
+
+    occurrences = {}
+    for page in pages:
+        lines = [line.strip() for line in page["text"].splitlines() if line.strip()]
+        candidates = set(lines[:2] + lines[-2:])
+        for line in candidates:
+            if len(line) >= 3:
+                occurrences[line] = occurrences.get(line, 0) + 1
+
+    threshold = max(3, (len(pages) + 1) // 2)
+    repeated = {
+        line for line, count in occurrences.items()
+        if count >= threshold and not re.fullmatch(r"\d+", line)
+    }
+
+    cleaned_pages = []
+    for page in pages:
+        lines = page["text"].splitlines()
+        while lines and lines[0].strip() in repeated:
+            lines.pop(0)
+        while lines and lines[-1].strip() in repeated:
+            lines.pop()
+        cleaned_pages.append({
+            **page,
+            "text": preprocess_text("\n".join(lines)),
+        })
+
+    return cleaned_pages
 
 def clean_academic_content(text: str) -> str:
 
@@ -39,7 +74,7 @@ def clean_academic_content(text: str) -> str:
 
     # Remove figure and table captions
     text = re.sub(
-        r"(?im)^\s*(figure|fig\.|table)\s+\d+[^\\n]*",
+        r"(?im)^\s*(figure|fig\.|table)\s+\d+[^\n]*",
         "",
         text
     )
@@ -101,11 +136,6 @@ def is_table_like_line(line: str) -> bool:
 
     return False
 
-def is_table_caption(line: str) -> bool:
-    return bool(
-    re.match(r"^\s*table\s+\d+\s*[:.]", line, re.IGNORECASE)
-    )
-
 TABLE_HEADER_MARKERS = {
     "layer type",
     "complexity per layer",
@@ -122,7 +152,7 @@ TABLE_HEADER_MARKERS = {
 
 def is_table_caption(text: str) -> bool:
     return bool(
-        re.match(r"^\s*table\s+\d+\s*:", text, re.IGNORECASE)
+        re.match(r"^\s*table\s+\d+\s*[:.]", text, re.IGNORECASE)
     )
 
 

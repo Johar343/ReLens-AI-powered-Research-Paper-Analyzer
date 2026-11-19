@@ -23,13 +23,17 @@ export default function InsightCard({ paper, onAskQuestion }) {
   const datasets = paper.datasets || [];
   const findings = paper.keyFindings || [];
   const limitations = paper.limitations || [];
+  const conclusions = paper.conclusions || [];
+  const futureWork = paper.futureWork || [];
 
   const hasInsights =
     Boolean(objective) ||
     methodology.length > 0 ||
     datasets.length > 0 ||
     findings.length > 0 ||
-    limitations.length > 0;
+    limitations.length > 0 ||
+    conclusions.length > 0 ||
+    futureWork.length > 0;
 
   if (!hasInsights) return null;
 
@@ -47,8 +51,13 @@ export default function InsightCard({ paper, onAskQuestion }) {
     ...(findings.length
       ? [{ id: 'findings', label: 'Key Findings', count: findings.length, icon: Award }]
       : []),
-    ...(limitations.length
-      ? [{ id: 'limitations', label: 'Limitations', count: limitations.length, icon: AlertTriangle }]
+    ...(limitations.length || conclusions.length || futureWork.length
+      ? [{
+          id: 'limitations',
+          label: 'Limitations & Conclusion',
+          count: limitations.length + conclusions.length + futureWork.length,
+          icon: AlertTriangle,
+        }]
       : []),
   ];
 
@@ -83,6 +92,13 @@ export default function InsightCard({ paper, onAskQuestion }) {
           findings, and limitations identified from the paper.
         </p>
       </div>
+
+      {paper.quickOverview && (
+        <div className="paper-synopsis-box">
+          <span className="synopsis-label">Paper Synopsis</span>
+          <p className="synopsis-text font-serif">{paper.quickOverview}</p>
+        </div>
+      )}
 
       <div className="insights-tab-strip">
         {availableTabs.map((tab) => {
@@ -254,29 +270,17 @@ export default function InsightCard({ paper, onAskQuestion }) {
               )}
             </div>
 
-            <div className="datasets-grid">
+            <div className="dataset-list">
               {datasets.map((ds, idx) => (
-                <div key={idx} className="dataset-card">
-                  <div className="dataset-top">
-                    <span className="dataset-name">{ds.name}</span>
-                    <span className="badge badge-muted">{ds.type}</span>
+                <div key={idx} className="dataset-row">
+                  <div>
+                    <strong className="dataset-name">{ds.name}</strong>
+                    <span className="dataset-type">{ds.type}</span>
                   </div>
-
-                  <div className="dataset-meta-row">
-                    <span className="dataset-stat">
-                      <strong>Corpus Size:</strong> {ds.size}
-                    </span>
-
-                    {ds.vocabulary && (
-                      <span className="dataset-stat">
-                        <strong>Vocab:</strong> {ds.vocabulary}
-                      </span>
-                    )}
-                  </div>
-
-                  <p className="dataset-purpose">
-                    <strong>Experimental Purpose:</strong> {ds.purpose}
-                  </p>
+                  <p className="dataset-purpose">{ds.purpose}</p>
+                  <span className="dataset-source">
+                    {ds.size} · {ds.sourcePage}
+                  </span>
                 </div>
               ))}
             </div>
@@ -320,29 +324,21 @@ export default function InsightCard({ paper, onAskQuestion }) {
               )}
             </div>
 
-            <div className="findings-grid">
+            <ul className="finding-bullets">
               {findings.map((finding, idx) => (
-                <div key={idx} className="finding-card">
-                  <div className="finding-metric-badge font-serif">
-                    {finding.metric}
-                  </div>
-                  <p className="finding-description">
-                    {finding.description}
-                  </p>
-                  <div className="finding-impact-box">
-                    <span className="impact-label">Research Impact:</span>
-                    <span className="impact-text">
-                      {finding.impact}
-                    </span>
-                  </div>
-                </div>
+                <li key={idx}>
+                  {finding.metric && <strong>{finding.metric}: </strong>}
+                  {finding.description}
+                  <span className="finding-source">{finding.impact}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         )}
 
         {/* Limitations */}
-        {limitations.length > 0 && showSection('limitations') && (
+        {(limitations.length > 0 || conclusions.length > 0 || futureWork.length > 0) &&
+          showSection('limitations') && (
           <div className="insight-card-item card-limitations">
             <div className="insight-card-header">
               <div className="header-left">
@@ -351,10 +347,10 @@ export default function InsightCard({ paper, onAskQuestion }) {
                 </div>
                 <div>
                   <h3 className="insight-heading">
-                    Limitations & Boundary Constraints
+                    Limitations, Conclusion & Future Directions
                   </h3>
                   <span className="card-subhead">
-                    Author-acknowledged caveats & research bottlenecks
+                    Evidence is separated by its role in the paper
                   </span>
                 </div>
               </div>
@@ -378,36 +374,23 @@ export default function InsightCard({ paper, onAskQuestion }) {
               )}
             </div>
 
-            <div className="limitations-list">
-              {limitations.map((limitation, idx) => {
-                const isHigh = limitation.severity === 'High';
-
-                return (
-                  <div
-                    key={idx}
-                    className={`limitation-card ${
-                      isHigh ? 'severity-high' : 'severity-mod'
-                    }`}
-                  >
-                    <div className="limitation-card-top">
-                      <h4 className="limitation-title">
-                        {limitation.title}
-                      </h4>
-                      <span
-                        className={`badge ${
-                          isHigh ? 'badge-amber' : 'badge-muted'
-                        }`}
-                      >
-                        {limitation.severity} Severity
-                      </span>
-                    </div>
-
-                    <p className="limitation-text">
-                      {limitation.description}
-                    </p>
-                  </div>
-                );
-              })}
+            <div className="limitation-groups">
+              {[
+                ['Author-reported limitations', limitations],
+                ['Conclusion', conclusions],
+                ['Future directions', futureWork],
+              ].map(([label, items]) => items.length > 0 && (
+                <section key={label} className="limitation-group">
+                  <h4>{label}</h4>
+                  <ul className="limitation-bullets">
+                    {items.map((item, idx) => (
+                      <li key={idx}>
+                        {item.description}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
             </div>
           </div>
         )}

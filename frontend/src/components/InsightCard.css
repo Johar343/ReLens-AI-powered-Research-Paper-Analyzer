@@ -28,6 +28,31 @@
   color: var(--text-muted);
 }
 
+.paper-synopsis-box {
+  margin: 0 0 24px;
+  padding: 18px 22px;
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--accent-terracotta);
+  border-radius: 4px;
+}
+
+.synopsis-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent-terracotta);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.synopsis-text {
+  color: var(--text-secondary);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
 /* Tab Strip */
 .insights-tab-strip {
   display: flex;
@@ -43,7 +68,7 @@
   align-items: center;
   gap: 7px;
   padding: 8px 14px;
-  border-radius: var(--radius-full);
+  border-radius: 4px;
   background-color: var(--surface-card);
   border: 1px solid var(--border-light);
   font-size: 0.84rem;
@@ -95,15 +120,15 @@
 .insight-card-item {
   background-color: var(--surface-card);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
+  border-radius: 4px;
   padding: 26px;
-  box-shadow: var(--shadow-xs);
+  box-shadow: none;
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .insight-card-item:hover {
   border-color: var(--border-medium);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .insight-card-header {
@@ -129,7 +154,7 @@
 .icon-wrapper {
   width: 38px;
   height: 38px;
-  border-radius: var(--radius-md);
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -237,10 +262,10 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 14px 18px;
-  background-color: var(--surface-subtle);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
+  padding: 12px 0;
+  background-color: transparent;
+  border-bottom: 1px solid var(--border-light);
+  border-radius: 0;
 }
 
 .methodology-aspect {
@@ -410,4 +435,97 @@
   font-size: 0.86rem;
   color: var(--text-secondary);
   line-height: 1.5;
+}
+
+.dataset-list,
+.finding-bullets,
+.limitation-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dataset-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.35fr) minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.dataset-row:last-child {
+  border-bottom: 0;
+}
+
+.dataset-name {
+  display: block;
+  color: var(--text-primary);
+}
+
+.dataset-type,
+.dataset-source,
+.finding-source {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  margin-top: 3px;
+}
+
+.dataset-purpose {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.finding-bullets,
+.limitation-bullets {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.finding-bullets li,
+.limitation-bullets li {
+  color: var(--text-secondary);
+  line-height: 1.55;
+  padding-left: 5px;
+}
+
+.finding-bullets strong,
+.limitation-bullets strong {
+  color: var(--text-primary);
+}
+
+.finding-source {
+  margin-left: 8px;
+  display: inline;
+}
+
+.limitation-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.limitation-group {
+  border-top: 1px solid var(--border-light);
+  padding-top: 12px;
+}
+
+.limitation-group:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.limitation-group h4 {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+@media (max-width: 700px) {
+  .dataset-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
 }

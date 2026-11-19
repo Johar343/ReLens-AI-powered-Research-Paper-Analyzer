@@ -4,13 +4,36 @@ from difflib import SequenceMatcher
 
 import nltk
 
+_SPACY_NLP = None
+_SPACY_ATTEMPTED = False
+
+
+def split_sentences(text: str) -> list[str]:
+    """Split text with spaCy when available, otherwise use NLTK."""
+    global _SPACY_NLP, _SPACY_ATTEMPTED
+    if not text or not text.strip():
+        return []
+
+    if not _SPACY_ATTEMPTED:
+        _SPACY_ATTEMPTED = True
+        try:
+            import spacy
+            _SPACY_NLP = spacy.load("en_core_web_sm")
+        except (ImportError, OSError, IOError):
+            _SPACY_NLP = None
+
+    if _SPACY_NLP is not None:
+        return [sentence.text.strip() for sentence in _SPACY_NLP(text).sents]
+
+    return nltk.sent_tokenize(text)
+
 
 def clean_sentence(sentence: str) -> str:
     """Normalize spacing and basic punctuation."""
 
     sentence = re.sub(r"\s+", " ", sentence).strip()
     sentence = re.sub(r"\s+([,.!?;:])", r"\1", sentence)
-    sentence = re.sub(r"([,.!?;:])([A-Za-z])", r"\1 \2", sentence)
+    sentence = re.sub(r"([.!?])([A-Z])", r"\1 \2", sentence)
 
     if sentence and sentence[-1] not in ".!?":
         sentence += "."
@@ -21,9 +44,7 @@ def clean_sentence(sentence: str) -> str:
 def tokenize_words(text: str) -> set:
     """Convert text into a normalized set of words."""
 
-    return set(
-        re.findall(r"\b[a-zA-Z0-9]+\b", text.lower())
-    )
+    return set(re.findall(r"\b[\w'-]+\b", text.lower()))
 
 
 def calculate_similarity(first: str, second: str) -> float:
@@ -82,7 +103,7 @@ def remove_redundant_sentences(
         duplicate_index = None
 
         for index, existing in enumerate(unique_sentences):
-            if calculate_similarity(sentence, existing) >= 0.78:
+            if calculate_similarity(sentence, existing) >= 0.88:
                 duplicate_index = index
                 break
 
@@ -138,9 +159,9 @@ def reconstruct_summary(
     if not t5_summary or not t5_summary.strip():
         return ""
 
-    # Split both texts into sentences.
-    summary_sentences = nltk.sent_tokenize(t5_summary)
-    source_sentences = nltk.sent_tokenize(original_text)
+    # Split both texts into sentences while preserving technical punctuation.
+    summary_sentences = split_sentences(t5_summary)
+    source_sentences = split_sentences(original_text)
 
     # Normalize generated sentences.
     cleaned_sentences = [

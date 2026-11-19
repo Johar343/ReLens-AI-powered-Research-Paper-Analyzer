@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import {
-  Users, Calendar, Hash, Bookmark, Copy, Check,
+  Users, Calendar, Bookmark, Copy, Check,
   FileText, Clock, Layers, MessageSquareQuote
 } from 'lucide-react';
 import './SummaryCard.css';
@@ -200,14 +200,6 @@ export default function SummaryCard({ paper, onOpenChat }) {
             </span>
           </div>
 
-          <div className="pub-divider" />
-
-          <div className="pub-item">
-            <span className="pub-label">Citations</span>
-            <span className="pub-value">
-              {displayValue(publication.citations)}
-            </span>
-          </div>
         </div>
 
         <div className="doc-metrics-strip">
@@ -248,17 +240,6 @@ export default function SummaryCard({ paper, onOpenChat }) {
             </div>
           </div>
 
-          <div className="metric-box">
-            <Hash size={15} className="metric-icon" />
-            <div className="metric-text">
-              <span className="metric-val">
-                {displayValue(meta.referencesCount)}
-              </span>
-              <span className="metric-name">
-                References
-              </span>
-            </div>
-          </div>
         </div>
 
         <div className="overview-quote-box">

@@ -10,12 +10,19 @@ dependencies = [
     "python-dotenv>=1.2.4",
     "python-multipart>=0.0.34",
     "requests>=2.34.2",
+    "spacy>=3.8.0,<4",
     "sentencepiece>=0.2.3",
     "torch==2.14.1",
     "transformers>=5.23.0",
     "uvicorn[standard]>=0.54.0",
     "yake>=0.7.3",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
 [[tool.uv.index]]
 name = "pytorch-cu130"
 url = "https://download.pytorch.org/whl/cu130"
