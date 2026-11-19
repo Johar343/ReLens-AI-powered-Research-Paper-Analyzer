@@ -150,29 +150,103 @@ flowchart TD
 
 ```text
 ReLens/
+├── app.py
+├── pyproject.toml
+├── uv.lock
+├── README.md
+├── .gitignore
+├── components/
+│   ├── __init__.py
+│   ├── paper_overview.py
+│   ├── report_ui.py
+│   └── upload.py
 ├── backend/
 │   ├── api/
+│   │   ├── __init__.py
 │   │   └── main.py
-│   └── src/
-│       ├── pdf_processor.py
-│       ├── text_preprocessor.py
-│       ├── section_extractor.py
-│       ├── summarizer.py
-│       ├── summary_reconstructor.py
-│       ├── information_extractor.py
-│       ├── metadata_extractor.py
-│       ├── history_store.py
-│       ├── keyword_extractor.py
-│       └── gemini_service.py
+│   ├── src/
+│   │   ├── __init__.py
+│   │   ├── analyzer.py
+│   │   ├── gemini_service.py
+│   │   ├── history_store.py
+│   │   ├── information_extractor.py
+│   │   ├── keyword_extractor.py
+│   │   ├── metadata_extractor.py
+│   │   ├── pdf_processor.py
+│   │   ├── section_extractor.py
+│   │   ├── summarizer.py
+│   │   ├── summarizer_distilbart_backup.py
+│   │   ├── summary_reconstructor.py
+│   │   └── text_preprocessor.py
+│   ├── config.py
+│   ├── requirements.txt
+│   └── uv.lock
+├── data/
+│   ├── BERT.pdf
+│   ├── attention.pdf
+│   ├── transfer_learning.pdf
+│   └── unet.pdf
+├── models/
+│   └── .gitkeep
 ├── frontend/
+│   ├── public/
+│   │   ├── favicon.svg
+│   │   ├── icons.svg
+│   │   └── relens-logo.png
 │   └── src/
+│       ├── assets/
+│       │   ├── hero.png
+│       │   ├── logo.png
+│       │   ├── react.svg
+│       │   └── vite.svg
 │       ├── components/
+│       │   ├── AboutView.jsx / AboutView.css
+│       │   ├── AnalysisProgressModal.jsx / AnalysisProgressModal.css
+│       │   ├── ChatPanel.jsx / ChatPanel.css
+│       │   ├── DetailedAnalysis.jsx / DetailedAnalysis.css
+│       │   ├── ExportModal.jsx / ExportModal.css
+│       │   ├── HomeSidebar.jsx / HomeSidebar.css
+│       │   ├── InsightCard.jsx / InsightCard.css
+│       │   ├── KeywordList.jsx / KeywordList.css
+│       │   ├── Navbar.jsx / Navbar.css
+│       │   ├── Sidebar.jsx / Sidebar.css
+│       │   ├── SummaryCard.jsx / SummaryCard.css
+│       │   └── UploadZone.jsx / UploadZone.css
+│       ├── data/
+│       │   └── mockData.js
 │       ├── pages/
+│       │   ├── Dashboard.jsx / Dashboard.css
+│       │   └── Home.jsx / Home.css
 │       ├── utils/
-│       └── App.jsx
-├── tests/
-├── pyproject.toml
-└── README.md
+│       │   └── paperAdapter.js
+│       ├── App.jsx
+│       ├── App.css
+│       ├── flatDesign.css
+│       ├── index.css
+│       └── main.jsx
+│   ├── index.html
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── vite.config.js
+│   ├── eslint.config.js
+│   ├── README.md
+│   └── .gitignore
+└── tests/
+│   ├── BASELINE_COMPARISON.md
+│   ├── __init__.py
+│   ├── ask_api.py
+│   ├── conftest.py
+│   ├── content_filter.py
+│   ├── full_paper.py
+│   ├── gemini.py
+│   ├── info.py
+│   ├── keywords.py
+│   ├── test_api_contract.py
+│   ├── test_core_pipeline.py
+│   ├── test_metadata_history.py
+│   ├── test_pdf_and_chunking.py
+│   ├── test_structured_analysis.py
+│   └── test_summarise.py
 ```
 
 ---
