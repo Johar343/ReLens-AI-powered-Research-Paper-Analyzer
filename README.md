@@ -36,8 +36,6 @@ It also includes interactive question answering for paper-grounded exploration.
 
 ## Application Preview
 
-Add screenshots captured from the running application to `assets/screenshots/`.
-
 ### 1. Home & Paper Upload
 
 Starting point for uploading a research paper and initiating analysis.
@@ -74,7 +72,7 @@ Paper-grounded questions and answers through ReLens AI-assistant
 
 ### 5. Analysis History and About WiS page 
 
-Previously analyzed papers stored through the FastAPI SQLite history service.
+Previously analyzed papers stored through the FastAPI SQLite history service and the About WiS page with technology stack knowledge.
 
 <img width="1915" height="832" alt="history" src="https://github.com/user-attachments/assets/dff5649c-188d-4a66-b16a-c6a307e2a792" />
 <img width="1916" height="866" alt="about" src="https://github.com/user-attachments/assets/bd6bb43c-089d-4844-aa82-6ccc95c34dbe" />
