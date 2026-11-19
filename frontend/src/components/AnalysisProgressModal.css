@@ -44,15 +44,6 @@
   }
 }
 
-.modal-top-accent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--accent-terracotta), var(--accent-amber));
-}
-
 .modal-header {
   display: flex;
   align-items: center;
@@ -136,6 +127,23 @@
   flex-direction: column;
   gap: 14px;
   margin-bottom: 24px;
+}
+
+.analysis-status-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--accent-terracotta);
+  border-radius: 4px;
+}
+
+.analysis-status-card .step-icon-spinner {
+  margin-top: 1px;
+  flex-shrink: 0;
 }
 
 .step-row {

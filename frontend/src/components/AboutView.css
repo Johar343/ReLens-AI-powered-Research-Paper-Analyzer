@@ -108,6 +108,31 @@
   margin-bottom: 24px;
 }
 
+.team-members-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 6px 24px;
+  margin: -10px 0 18px;
+  padding: 0;
+  list-style: none;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.team-members-list li {
+  padding: 10px 14px;
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.team-description-followup {
+  margin-bottom: 24px;
+}
+
 .team-pillars-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

@@ -12,7 +12,7 @@ export default function AboutView({ onSelectSample, samplePapers, onGoToUpload }
         </div>
         <h1 className="about-title font-serif">About ReLens & Team WiS</h1>
         <p className="about-lead">
-          ReLens was conceived and developed by <strong>Team WiS</strong> as a 3rd-year university capstone research project. It addresses a fundamental challenge in computational research: helping students and researchers digest complex, mathematically dense research papers in one go without losing hours deciphering formatting and jargon.
+          ReLens was conceived and developed by <strong>Team WiS</strong> as a 3rd-year university capstone research project by students of <strong>B.Tech CSE (AI & ML)</strong>. The project addresses a common problem in computational research: important ideas are often buried in dense mathematical notation, technical jargon, multi-column formatting, tables, and lengthy experimental sections. ReLens helps students and researchers understand the central contribution, methodology, evidence, and limitations of a paper without spending hours deciphering its structure.
         </p>
       </div>
 
@@ -25,12 +25,21 @@ export default function AboutView({ onSelectSample, samplePapers, onGoToUpload }
           <div>
             <span className="team-kicker">Development Team</span>
             <h2 className="team-heading font-serif">Developed by Team WiS</h2>
-            <span className="team-sub">3rd-Year University Capstone • NLP & AI Research Track</span>
+            <span className="team-sub">3rd-Year B.Tech CSE (AI & ML) Capstone • NLP & AI Research Track</span>
           </div>
         </div>
 
         <p className="team-description">
-          Team WiS designed ReLens from first principles to bridge the gap between heavy academic publications and practical researcher understanding. Instead of generic conversational chatbots that fabricate citations, ReLens enforces grounded extraction: identifying exact mathematical formulas, training splits, quantitative benchmark results, and author-acknowledged boundary constraints.
+          Team WiS (<strong>Women In STEM</strong>) designed ReLens from first principles to bridge the gap between heavy academic publications and practical researcher understanding. The team members are:
+        </p>
+        <ul className="team-members-list">
+          <li>Garima Johar</li>
+          <li>Ifza Akhtar</li>
+          <li>Priya Bora</li>
+          <li>Riddhima</li>
+        </ul>
+        <p className="team-description team-description-followup">
+          Instead of treating a paper as a generic chatbot prompt, ReLens reads the paper carefully and summarizes its formulas, model design, datasets, results, and limitations using the original text as its source.
         </p>
 
         <div className="team-pillars-grid">
@@ -39,8 +48,8 @@ export default function AboutView({ onSelectSample, samplePapers, onGoToUpload }
               <Layers size={18} />
             </div>
             <div className="pillar-content">
-              <strong className="pillar-title">Document Hierarchy Decomposition</strong>
-              <span className="pillar-sub">Parses section-by-section structure from abstract to appendix with localized page ranges.</span>
+              <strong className="pillar-title">Organized Paper Reading</strong>
+              <span className="pillar-sub">Breaks the paper into clear sections and shows where each idea appears.</span>
             </div>
           </div>
 
@@ -49,8 +58,8 @@ export default function AboutView({ onSelectSample, samplePapers, onGoToUpload }
               <Cpu size={18} />
             </div>
             <div className="pillar-content">
-              <strong className="pillar-title">Methodology & Dataset Mapping</strong>
-              <span className="pillar-sub">Separates theoretical architectures, loss formulations, and benchmark dataset splits.</span>
+              <strong className="pillar-title">Methods and Datasets</strong>
+              <span className="pillar-sub">Explains how the study works and identifies the data used to test it.</span>
             </div>
           </div>
 
@@ -59,8 +68,8 @@ export default function AboutView({ onSelectSample, samplePapers, onGoToUpload }
               <ShieldCheck size={18} />
             </div>
             <div className="pillar-content">
-              <strong className="pillar-title">Grounded, Non-Hallucinatory Q&A</strong>
-              <span className="pillar-sub">Constrains assistant responses strictly to the analyzed text with explicit section references.</span>
+              <strong className="pillar-title">Paper-Based Questions</strong>
+              <span className="pillar-sub">Answers questions using only the uploaded paper and points back to its sections.</span>
             </div>
           </div>
         </div>
@@ -81,6 +90,12 @@ export default function AboutView({ onSelectSample, samplePapers, onGoToUpload }
             <div className="why-badge">The ReLens Solution</div>
             <p className="why-text">
               ReLens extracts the research objective, methodology components, benchmark corpora, validated empirical gains, and critical limitations into structured cards in one go, followed by an interactive research assistant.
+            </p>
+          </div>
+          <div className="why-item">
+            <div className="why-badge">The Research Gap</div>
+            <p className="why-text">
+              Existing reading workflows separate text extraction, summarization, citation checking, and paper-grounded questions. This makes it difficult to connect an architecture to its experiments or distinguish reported evidence from interpretation. ReLens brings these steps together while preserving page context.
             </p>
           </div>
         </div>
@@ -107,8 +122,16 @@ export default function AboutView({ onSelectSample, samplePapers, onGoToUpload }
             <span className="tech-value">FastAPI REST Endpoints, Pydantic Schemas, Asynchronous Processing</span>
           </div>
           <div className="tech-row">
+            <span className="tech-label">NLP Pipeline</span>
+            <span className="tech-value">Python, PyMuPDF, Hugging Face Transformers, T5, spaCy, YAKE, NLTK</span>
+          </div>
+          <div className="tech-row">
+            <span className="tech-label">Persistence & Grounded QA</span>
+            <span className="tech-value">SQLite history storage, Crossref metadata enrichment, Gemini paper-grounded Q&amp;A</span>
+          </div>
+          <div className="tech-row">
             <span className="tech-label">Document Extraction</span>
-            <span className="tech-value">PDF hierarchy parsing, section classification, keyword extraction, grounded QA</span>
+            <span className="tech-value">PDF hierarchy parsing, canonical section analysis, page provenance, structured evidence extraction</span>
           </div>
         </div>
       </div>
