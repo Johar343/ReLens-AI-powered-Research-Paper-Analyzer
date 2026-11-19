@@ -268,41 +268,71 @@ ReLens/
 
 ### Prerequisites
 
-- Python
-- Node.js and npm
-- uv
-- Git
+Make sure you have the following installed:
 
-### Backend
+- Git
+- Python 3.13
+- Node.js 20 or newer
+- npm
+- [uv](https://docs.astral.sh/uv/)
+
+### 1. Clone the Repository
 
 ```powershell
-Set-Location backend
-uv sync
-uv run uvicorn api.main:app --reload
+git clone https://github.com/Johar343/ReLens-AI-powered-Research-Paper-Analyzer.git
+cd ReLens-AI-powered-Research-Paper-Analyzer
 ```
 
-### Frontend
-
-Open another terminal:
+### 2. Switch to the Main Branch
 
 ```powershell
-Set-Location frontend
+git switch main
+git pull origin main
+```
+
+### 3. Set Up and Run the Backend
+
+From the project root, install the Python dependencies and start the FastAPI server:
+
+```powershell
+uv sync
+uv run uvicorn backend.api.main:app --reload
+```
+
+The backend will start locally.
+
+### 4. Set Up and Run the Frontend
+
+Open a second terminal and navigate to the frontend directory:
+
+```powershell
+cd ReLens-AI-powered-Research-Paper-Analyzer/frontend
 npm install
 npm run dev
 ```
 
-Configure the required Gemini environment variable using the project's environment configuration.
+Open the local URL displayed by Vite in your browser.
 
-### Tests
+### 5. Configure Environment Variables
+
+Configure the required Gemini API key using the environment configuration expected by the project.
+
+Keep API keys and `.env` files private. Do not commit them to GitHub.
+
+### 6. Run Tests
+
+From the project root:
 
 ```powershell
 uv run pytest -q
-Set-Location frontend
-npm run build
 ```
 
----
+To verify the frontend build:
 
+```powershell
+cd frontend
+npm run build
+```
 ## Contributors
 
 Developed by **Team WiS (Women In STEM)**:
