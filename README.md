@@ -42,31 +42,44 @@ Add screenshots captured from the running application to `assets/screenshots/`.
 
 Starting point for uploading a research paper and initiating analysis.
 
-![Home and paper upload](assets/screenshots/home-upload.png)
+<img width="1916" height="871" alt="homepage" src="https://github.com/user-attachments/assets/276efcb7-ea6a-47a1-9e50-0c3a12398378" />
+
 
 ### 2. Research Paper Analysis
 
 The main interface presents the paper through the six-section summary structure.
 
-![Research paper analysis](assets/screenshots/analysis.png)
+<img width="1917" height="872" alt="uploadpdf" src="https://github.com/user-attachments/assets/86d45fb5-617a-43f1-bca7-831bff90a13f" />
+<img width="1907" height="875" alt="pdfprocessing" src="https://github.com/user-attachments/assets/7936af6c-94a0-459c-b679-961fffbacea7" />
+<img width="1912" height="875" alt="overview" src="https://github.com/user-attachments/assets/71709653-7a2c-4017-ae86-cf44700ccf6d" />
+
 
 ### 3. Research Insights
 
 Focused view of objectives, methodology, datasets, findings, and limitations.
 
-![Research insights](assets/screenshots/insights.png)
+<img width="1917" height="861" alt="summary oage1" src="https://github.com/user-attachments/assets/496963f0-96af-43c0-883d-7174300e5883" />
+<img width="1903" height="865" alt="summary2" src="https://github.com/user-attachments/assets/ecdd6f55-6379-4e9a-9bc1-da2d67c5231b" />
+<img width="1912" height="765" alt="datasets" src="https://github.com/user-attachments/assets/457cb4e6-fc8d-49fa-8970-cbbde68c02e7" />
+<img width="1916" height="867" alt="summary3" src="https://github.com/user-attachments/assets/0ae37579-381e-49b4-94cd-b5fee7094e7a" />
+<img width="1911" height="880" alt="summary4" src="https://github.com/user-attachments/assets/d13faa7a-4fe7-4916-b57c-1f30451ef5ff" />
+
 
 ### 4. Interactive Paper Q&A
 
-Paper-grounded questions and answers.
+Paper-grounded questions and answers through ReLens AI-assistant
 
-![Interactive paper Q&A](assets/screenshots/qa.png)
+<img width="1917" height="872" alt="relens_assistant" src="https://github.com/user-attachments/assets/d6858969-5c1a-4272-888c-1ac23d431145" />
 
-### 5. Analysis History
+
+### 5. Analysis History and About WiS page 
 
 Previously analyzed papers stored through the FastAPI SQLite history service.
 
-![Analysis history](assets/screenshots/history.png)
+<img width="1915" height="832" alt="history" src="https://github.com/user-attachments/assets/dff5649c-188d-4a66-b16a-c6a307e2a792" />
+<img width="1916" height="866" alt="about" src="https://github.com/user-attachments/assets/bd6bb43c-089d-4844-aa82-6ccc95c34dbe" />
+<img width="1901" height="871" alt="tech_why" src="https://github.com/user-attachments/assets/d1fd12ea-7fca-44b2-b760-bcadd1f65e79" />
+
 
 ---
 
@@ -223,30 +236,30 @@ ReLens/
 │       ├── App.css
 │       ├── flatDesign.css
 │       ├── index.css
-│       └── main.jsx
-│   ├── index.html
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── vite.config.js
-│   ├── eslint.config.js
-│   ├── README.md
-│   └── .gitignore
+│       ├── main.jsx
+│       ├── index.html
+│       ├── package.json
+│       ├── package-lock.json
+│       ├── vite.config.js
+│       ├── eslint.config.js
+│       ├── README.md
+│       └── .gitignore
 └── tests/
-│   ├── BASELINE_COMPARISON.md
-│   ├── __init__.py
-│   ├── ask_api.py
-│   ├── conftest.py
-│   ├── content_filter.py
-│   ├── full_paper.py
-│   ├── gemini.py
-│   ├── info.py
-│   ├── keywords.py
-│   ├── test_api_contract.py
-│   ├── test_core_pipeline.py
-│   ├── test_metadata_history.py
-│   ├── test_pdf_and_chunking.py
-│   ├── test_structured_analysis.py
-│   └── test_summarise.py
+   ├── BASELINE_COMPARISON.md
+   ├── __init__.py
+   ├── ask_api.py
+   ├── conftest.py
+   ├── content_filter.py
+   ├── full_paper.py
+   ├── gemini.py
+   ├── info.py
+   ├── keywords.py
+   ├── test_api_contract.py
+   ├── test_core_pipeline.py
+   ├── test_metadata_history.py
+   ├── test_pdf_and_chunking.py
+   ├── test_structured_analysis.py
+   └── test_summarise.py
 ```
 
 ---
